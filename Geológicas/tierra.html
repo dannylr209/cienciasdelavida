@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Línea del Tiempo - Eventos Biológicos</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
+
+        body {
+            font-family: 'Fredoka One', cursive;
+            text-align: center;
+            background: linear-gradient(45deg, #FF61D8, #6B5AED, #37C2FF);
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+            animation: gradientBG 15s ease infinite;
+            background-size: 400% 400%;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        h1 {
+            color: #FFFFFF;
+            margin: 20px 0;
+            font-size: 3em;
+            text-shadow: 3px 3px 0 #FF61D8,
+                         6px 6px 0 #6B5AED;
+            transform: rotate(-2deg);
+            animation: bounce 2s ease infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0) rotate(-2deg); }
+            50% { transform: translateY(-10px) rotate(-2deg); }
+        }
+
+        .timeline {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 40px auto;
+            width: 90%;
+            max-width: 800px;
+            position: relative;
+        }
+
+        .event {
+            background-color: #ffffff;
+            border: 4px solid #FF61D8;
+            border-radius: 20px;
+            padding: 20px;
+            margin: 20px 0;
+            width: 100%;
+            box-shadow: 8px 8px 0 #6B5AED;
+            position: relative;
+            transition: transform 0.3s, box-shadow 0.3s;
+            animation: float 3s ease-in-out infinite;
+            animation-delay: calc(var(--animation-order) * 0.2s);
+        }
+
+        .event:nth-child(odd) {
+            border-color: #37C2FF;
+            box-shadow: 8px 8px 0 #FF61D8;
+            transform: rotate(1deg);
+        }
+
+        .event:nth-child(even) {
+            transform: rotate(-1deg);
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(var(--rotation)); }
+            50% { transform: translateY(-10px) rotate(var(--rotation)); }
+        }
+
+        .event:hover {
+            transform: scale(1.05) rotate(0deg);
+            box-shadow: 12px 12px 0 #6B5AED;
+            z-index: 2;
+        }
+
+        .event h2 {
+            color: #6B5AED;
+            margin: 0 0 10px;
+            font-size: 1.8em;
+            text-shadow: 2px 2px 0 #FF61D8;
+        }
+
+        .event p {
+            color: #333;
+            margin: 10px 0;
+            line-height: 1.6;
+            font-family: Arial, sans-serif;
+        }
+
+        .event img {
+            width: 100%;
+            max-height: 200px;
+            object-fit: cover;
+            border-radius: 15px;
+            margin: 15px 0;
+            border: 3px solid #37C2FF;
+            box-shadow: 5px 5px 0 #FF61D8;
+            transition: transform 0.3s;
+        }
+
+        .event img:hover {
+            transform: scale(1.02) rotate(-2deg);
+        }
+
+        .bibliography {
+            margin: 40px auto;
+            text-align: left;
+            max-width: 800px;
+            padding: 20px;
+            background-color: #ffffff;
+            border: 4px solid #37C2FF;
+            border-radius: 20px;
+            box-shadow: 8px 8px 0 #FF61D8;
+            font-family: Arial, sans-serif;
+        }
+
+        .bibliography h2 {
+            color: #6B5AED;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 0 #FF61D8;
+        }
+
+        .bibliography p {
+            color: #333;
+            line-height: 1.6;
+        }
+
+        footer {
+            margin: 40px 0;
+            font-size: 1.2em;
+            color: #ffffff;
+            text-shadow: 2px 2px 0 #FF61D8;
+            animation: glow 2s ease-in-out infinite;
+        }
+
+        @keyframes glow {
+            0%, 100% { text-shadow: 2px 2px 0 #FF61D8; }
+            50% { text-shadow: 2px 2px 10px #37C2FF; }
+        }
+
+        /* Burbujas decorativas */
+        .bubble {
+            position: fixed;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            pointer-events: none;
+            animation: float-bubble 8s infinite;
+        }
+
+        @keyframes float-bubble {
+            0%, 100% { transform: translateY(0) translateX(0); }
+            25% { transform: translateY(-20px) translateX(10px); }
+            50% { transform: translateY(-40px) translateX(-10px); }
+            75% { transform: translateY(-20px) translateX(10px); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Burbujas decorativas -->
+    <script>
+        function createBubbles() {
+            for (let i = 0; i < 20; i++) {
+                const bubble = document.createElement('div');
+                bubble.className = 'bubble';
+                bubble.style.width = Math.random() * 50 + 20 + 'px';
+                bubble.style.height = bubble.style.width;
+                bubble.style.left = Math.random() * 100 + 'vw';
+                bubble.style.top = Math.random() * 100 + 'vh';
+                bubble.style.animationDelay = Math.random() * 8 + 's';
+                document.body.appendChild(bubble);
+            }
+        }
+        window.onload = createBubbles;
+    </script>
+
+    <h1>🌍 Línea del Tiempo - Eventos Biológicos 🦕</h1>
+    <div class="timeline">
+        <div class="event">
+            <h2>🌙 Formación de la Luna</h2>
+            <img src="luna.jpg" alt="Formación de la Luna">
+            <p>Hace aproximadamente 4.500 millones de años, la Luna se formó como resultado de una colisión gigantesca entre la Tierra primitiva y un cuerpo del tamaño de Marte llamado Theia. Este evento fue crucial para estabilizar el clima y las mareas de nuestro planeta, permitiendo el desarrollo de la vida.</p>
+        </div>
+        <div class="event">
+            <h2>🦠 Origen de la vida - Procariotas</h2>
+            <img src="procariota.jpg" alt="Procariotas">
+            <p>Hace 3.500 millones de años, surgieron los primeros organismos vivos: los procariotas. Estas células simples, que carecen de núcleo, fueron los pioneros de la vida en la Tierra y establecieron las bases para toda la biodiversidad que conocemos hoy.</p>
+        </div>
+        <div class="event">
+            <h2>🌿 Fotosíntesis</h2>
+            <img src="fotosintesis.jpg" alt="Fotosíntesis">
+            <p>Hace 2.500 millones de años, algunos organismos comenzaron a realizar la fotosíntesis, un proceso que convirtió la luz solar en energía química. Este evento liberó grandes cantidades de oxígeno en la atmósfera, transformándola y haciendo posible la vida aeróbica.</p>
+        </div>
+        <div class="event">
+            <h2>🔬 Aparición de eucariotas</h2>
+            <img src="eucariotas.jpg" alt="Eucariotas">
+            <p>Hace entre 1.600 y 2.100 millones de años, surgieron los eucariotas, organismos con células que poseen un núcleo definido. Este avance permitió una mayor complejidad en la vida y fue un paso esencial hacia la aparición de organismos multicelulares.</p>
+        </div>
+        <div class="event">
+            <h2>🧬 Organismos multicelulares</h2>
+            <img src="multicelulares.jpg" alt="Organismos multicelulares">
+            <p>Hace 1.100 millones de años, los primeros organismos multicelulares, similares a las algas verdes, comenzaron a evolucionar. 200 millones de años después, aparecieron animales multicelulares como las esponjas, capaces de reorganizar sus células.</p>
+        </div>
+        <div class="event">
+            <h2>💨 Oxígeno en la atmósfera</h2>
+            <img src="oxigeno.jpg" alt="Oxígeno en la atmósfera">
+            <p>Hace 2.400 millones de años, el oxígeno comenzó a acumularse en la atmósfera debido a la fotosíntesis. Este evento, conocido como la Gran Oxidación, transformó radicalmente el ambiente terrestre, permitiendo la evolución de organismos más complejos.</p>
+        </div>
+        <div class="event">
+            <h2>🌎 Rodinia</h2>
+            <img src="rodinia.jpg" alt="Rodinia">
+            <p>Hace 1.100 millones de años, se formó Rodinia, uno de los primeros supercontinentes en la historia de la Tierra. Su fragmentación posterior influyó en la distribución de océanos y continentes, impactando la evolución de la vida.</p>
+        </div>
+        <div class="event">
+            <h2>❄️ Snowball Earth</h2>
+            <img src="snowball.jpg" alt="Snowball Earth">
+            <p>Hace 700 millones de años, la Tierra experimentó una glaciación global conocida como "Snowball Earth", durante la cual gran parte del planeta quedó cubierto de hielo. Este evento extremo posiblemente impulsó la evolución de formas de vida más resistentes.</p>
+        </div>
+        <div class="event">
+            <h2>👨‍👩‍👧‍👦 Aparición del hombre (Homo sapiens)</h2>
+            <img src="hombre.png" alt="Homo sapiens">
+            <p>Hace 300.000 años, surgieron los Homo sapiens, nuestra especie actual. Con habilidades cognitivas avanzadas y capacidad para la cooperación, los humanos transformaron el entorno y crearon civilizaciones complejas.</p>
+        </div>
+    </div>
+    <div class="bibliography">
+        <h2>📚 Bibliografía</h2>
+        <p>
+            Canup, R. M., & Asphaug, E. (2001). Origin of the Moon in a giant impact near the end of the Earth's formation. <em>Nature</em>, <em>412</em>(6848), 708-712. https://doi.org/10.1038/35089010
+        </p>
+        <p>
+            Schopf, J. W. (2006). Fossil evidence of Archaean life. <em>Philosophical Transactions of the Royal Society B: Biological Sciences</em>, <em>361</em>(1470), 869-885. https://doi.org/10.1098/rstb.2006.1834
+        </p>
+        <p>
+            Falkowski, P. G. (2006). Tracing oxygen's imprint on Earth's metabolic evolution. <em>Science</em>, <em>311</em>(5768), 1724-1725. https://doi.org/10.1126/science.1125937
+        </p>
+        <p>
+            Knoll, A. H. (2015). Life on a Young Planet: The First Three Billion Years of Evolution on Earth. Princeton University Press.
+        </p>
+        <p>
+            Hoffman, P. F., et al. (2017). Snowball Earth climate dynamics and Cryogenian geology-geobiology. <em>Science Advances</em>, <em>3</em>(11), e1600983. https://doi.org/10.1126/sciadv.1600983
+        </p>
+    </div>
+    <footer>
+        🌟 © 2025 Línea del Tiempo - Daniel López, Jose Carlos Ceferino, Juan Esteban Barrios 🌟
+    </footer>
+</body>
+</html>
